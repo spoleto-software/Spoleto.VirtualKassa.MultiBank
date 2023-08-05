@@ -11,6 +11,7 @@
         <PublishReadyToRun>true</PublishReadyToRun>
         <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
         <PublishReadyToRunComposite>false</PublishReadyToRunComposite>
+        <EnableWindowsTargeting>true</EnableWindowsTargeting>
     </PropertyGroup>
 
     <ItemGroup>
