@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spoleto.VirtualKassa.MultiBank", "src\Spoleto.VirtualKassa.MultiBank\Spoleto.VirtualKassa.MultiBank.csproj", "{F4845272-268A-4D7A-8F7A-30187A3DABBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5AA9A2B7-BD1B-4484-919E-AC10F1616B0D}"
+	ProjectSection(SolutionItems) = preProject
+		src\.editorconfig = src\.editorconfig
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spoleto.VirtualKassa.MultiBank.Tests", "src\Spoleto.VirtualKassa.MultiBank.Tests\Spoleto.VirtualKassa.MultiBank.Tests.csproj", "{91A7E608-B269-4D56-94A2-ED75E7AFBB96}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spoleto.VirtualKassa.MultiBank.WpfTester", "src\Spoleto.VirtualKassa.MultiBank.WpfTester\Spoleto.VirtualKassa.MultiBank.WpfTester.csproj", "{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkFlow", "WorkFlow", "{48E65D95-265B-44DB-A560-CCE813F25732}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\publish-to-nuget.yml = .github\workflows\publish-to-nuget.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4845272-268A-4D7A-8F7A-30187A3DABBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4845272-268A-4D7A-8F7A-30187A3DABBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4845272-268A-4D7A-8F7A-30187A3DABBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4845272-268A-4D7A-8F7A-30187A3DABBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A7E608-B269-4D56-94A2-ED75E7AFBB96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A7E608-B269-4D56-94A2-ED75E7AFBB96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A7E608-B269-4D56-94A2-ED75E7AFBB96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A7E608-B269-4D56-94A2-ED75E7AFBB96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {912DD136-A2A3-4E2E-866B-C2074ED7725F}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <ApplicationIcon>Resources\MainIcon.ico</ApplicationIcon>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
+        <PublishReadyToRun>true</PublishReadyToRun>
+        <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+        <PublishReadyToRunComposite>false</PublishReadyToRunComposite>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Remove="Resources\MainIcon.jpg" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="Resources\MainIcon.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Resource Include="Resources\MainIcon.jpg" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+        <PackageReference Include="Spoleto.Common" Version="1.6.8.1844" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Spoleto.VirtualKassa.MultiBank.Tests\Spoleto.VirtualKassa.MultiBank.Tests.csproj" />
+        <ProjectReference Include="..\Spoleto.VirtualKassa.MultiBank\Spoleto.VirtualKassa.MultiBank.csproj" />
+    </ItemGroup>
+
+</Project>

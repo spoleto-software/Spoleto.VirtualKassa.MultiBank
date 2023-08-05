@@ -1,0 +1,398 @@
+﻿<Window x:Class="Spoleto.VirtualKassa.MultiBank.WpfTester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="MultiBank Tester" Height="450" Width="800" FontSize="13" Icon="/Resources/MainIcon.jpg">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+    </Window.Resources>
+    <xctk:BusyIndicator x:Name="busyIndicator" BusyContent="Пожалуйста, подождите ...">
+        <TabControl>
+            <TabItem Header="GET Настройка драйвера">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="GetDriverConfigurationButton" Content="Выполнить запрос к API" Grid.Row="0" Click="GetDriverConfigurationButton_Click"/>
+                    <TextBox x:Name="GetDriverConfigurationResult" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="GET Информации о фискальном модуле">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="GetFiscalModuleInfoButton" Content="Выполнить запрос к API" Grid.Row="0" Click="GetFiscalModuleInfoButton_Click"/>
+                    <TextBox x:Name="GetFiscalModuleInfoResult" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="GET Статус виртуальной кассы из ОФД">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="GetFiscalModuleStatusButton" Content="Выполнить запрос к API" Grid.Row="0" Click="GetFiscalModuleStatusButton_Click"/>
+                    <TextBox x:Name="GetFiscalModuleStatusResult" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="GET Получение настроек кассы">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="GetCashRegisterSettingButton" Content="Выполнить запрос к API" Grid.Row="0" Click="GetCashRegisterSettingButton_Click"/>
+                    <TextBox x:Name="GetCashRegisterSettingResult" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="POST Установка настроек кассы">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="SetCashRegisterSettingButton" Content="Выполнить запрос к API" Grid.Row="0" Click="SetCashRegisterSettingButton_Click"/>
+                    <TextBox x:Name="SetCashRegisterSetting" Grid.Row="1">
+                        {
+                    "module_gnk_id": "VG300750000049",
+                    "printer_name": "SAM4S GIANT-100",
+                    "demo": true 
+                    }
+                    </TextBox>
+                    <TextBox x:Name="SetCashRegisterSettingResult" Grid.Row="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="GET Данные о компании">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="GetCompanyDataButton" Content="Выполнить запрос к API" Grid.Row="0" Click="GetCompanyDataButton_Click"/>
+                    <TextBox x:Name="GetCompanyDataResult" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="GET Получение кассиров">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="GetCashiersButton" Content="Выполнить запрос к API" Grid.Row="0" Click="GetCashiersButton_Click"/>
+                    <TextBox x:Name="GetCashiersResult" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="POST Авторизация кассира">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="CashierLoginButton" Content="Выполнить запрос к API" Grid.Row="0" Click="CashierLoginButton_Click"/>
+                    <TextBox x:Name="CashierLoginInfo" Grid.Row="1">
+                        {
+    "username": "Micros", 
+    "password": "password", 
+    "profile_id": "profile_id" 
+}
+                    </TextBox>
+                    <TextBox x:Name="CashierLoginResult" Grid.Row="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="POST Продажа">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="SellButton" Content="Выполнить запрос к API" Grid.Row="0" Click="SellButton_Click"/>
+                    <TextBox x:Name="SellInfo" Grid.Row="1">
+                        <TextBox.Text>
+                            {
+    "module_operation_type": "3",
+                        "receipt_sum": 3000000,
+    "receipt_cashier_name": "Иванов Иван",
+    "receipt_gnk_receivedcash": 3000000,
+    "receipt_gnk_receivedcard": 0,
+    "receipt_gnk_time": "2023-06-26 13:58:28",
+    "items": [
+        {
+            "classifier_class_code": "01902001009030002",
+            "product_mark": false,
+            "product_name": "Dinay 1000ml",
+            "product_label": "4780019900572",
+            "product_barcode": "4780019900572",
+            "product_price": 10000,
+            "total_product_price": 20000,
+            "product_without_vat": false,
+            "product_discount": 0,
+            "count": 2,
+            "product_vat_percent": 15,
+            "other": 0
+        },
+        {
+            "classifier_class_code": "10202001006000004",
+            "product_mark": false,
+            "product_name": "Cola",
+            "product_label": "4780019900572",
+            "product_barcode": "4780019900572",
+            "product_price": 10000,
+            "total_product_price": 10000,
+            "product_without_vat": false,
+            "product_discount": 0,
+            "count": 1,
+            "product_vat_percent": 15,
+            "other": 0
+        }
+    ],
+    "location": {
+        "latitude": 41.29671408606234,
+        "longitude": 69.21787478269367
+    }
+}</TextBox.Text>
+                    </TextBox>
+                    <TextBox x:Name="SellResult" Grid.Row="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="POST Возврат">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="ReturnButton" Content="Выполнить запрос к API" Grid.Row="0" Click="ReturnButton_Click"/>
+                    <TextBox x:Name="ReturnInfo" Grid.Row="1">
+                        <TextBox.Text>
+                            {
+    "module_operation_type": "4",
+    "receipt_sum": 2800000,
+    "receipt_cashier_name": "cashier",
+    "receipt_gnk_receivedcash": 5000000,
+    "receipt_gnk_receivedcard": 0,
+    "receipt_gnk_time": "2022-02-03 16:24:46",
+    "RefundInfo":{
+    "TerminalID": "UZ191211502326", 
+    "ReceiptSeq": "1013", 
+    "DateTime": "2023-07-14 11:35:26",
+    "FiscalSign": "146130134900"
+     },
+    "items": [
+        {
+            "classifier_class_code": "",
+            "product_mark": false,
+            "product_name": "Dinay 1000ml",
+            "product_label": "",
+            "product_barcode": "4780019900572",
+            "product_price": 10000,
+            "product_without_vat": false,
+            "product_discount": 0,
+            "count": 2,
+            "product_vat_percent": 15,
+            "other": 0
+        },
+        {
+            "classifier_class_code": "",
+            "product_mark": false,
+            "product_name": "Cola",
+            "product_label": "",
+            "product_barcode": "",
+            "product_price": 10000,
+            "product_without_vat": true,
+            "product_discount": 0,
+            "product_vat_percent": 15,
+            "count": 1,
+            "other": 0
+        }
+    ],
+    "location": {
+        "latitude": 41.29671408606234,
+        "longitude": 69.21787478269367
+    }
+}</TextBox.Text>
+                    </TextBox>
+                    <TextBox x:Name="ReturnResult" Grid.Row="3"/>
+                </Grid>
+            </TabItem>            
+            <TabItem Header="GET Получение списка профилей для авторизации">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="GetProfilesForAuthorizationButton" Content="Выполнить запрос к API" Grid.Row="0" Click="GetProfilesForAuthorizationButton_Click"/>
+                    <TextBox x:Name="GetProfilesForAuthorizationInfo" Grid.Row="1">
+                        token
+                    </TextBox>
+                    <TextBox x:Name="GetProfilesForAuthorizationResult" Grid.Row="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="GET Номенклатуры">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="GetNomenclaturesButton" Content="Выполнить запрос к API" Grid.Row="0" Click="GetNomenclaturesButton_Click"/>
+                    <TextBox x:Name="GetNomenclaturesResult" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="POST Отправить чек по электронному почту">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="SendSaleSlipByEmailButton" Content="Выполнить запрос к API" Grid.Row="0" Click="SendSaleSlipByEmailButton_Click"/>
+                    <TextBox x:Name="SendSaleSlipByEmailInfo" Grid.Row="1">
+                        {
+    "mail": "mail@example.com",
+    "receipt_id": "733438ec-b7aa-43fe-8650-592797cce47e"
+}
+                    </TextBox>
+                    <TextBox x:Name="SendSaleSlipByEmailResult" Grid.Row="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="POST Открытие смены">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="OpenShiftButton" Content="Выполнить запрос к API" Grid.Row="0" Click="OpenShiftButton_Click"/>
+                    <TextBox x:Name="OpenShiftInfo" Grid.Row="1">
+                        {
+    "module_operation_type": "1",
+    "receipt_gnk_time": "2023-07-28 17:34:01",
+    "receipt_cashier_name": "Иванов Иван"
+}
+                    </TextBox>
+                    <TextBox x:Name="OpenShiftResult" Grid.Row="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="POST Закрытие смены">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="CloseShiftButton" Content="Выполнить запрос к API" Grid.Row="0" Click="CloseShiftButton_Click"/>
+                    <TextBox x:Name="CloseShiftInfo" Grid.Row="1">
+                        {
+    "module_operation_type": "2",
+    "receipt_gnk_time": "2023-08-01 16:24:46"
+}
+                    </TextBox>
+                    <TextBox x:Name="CloseShiftResult" Grid.Row="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="POST Х отчет">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="XReportButton" Content="Выполнить запрос к API" Grid.Row="0" Click="XReportButton_Click"/>
+                    <TextBox x:Name="XReportInfo" Grid.Row="1">
+                        {
+    "module_operation_type": "7",
+    "receipt_cashier_name": "Иванов Иван",
+    "receipt_gnk_time": "2023-08-01T11:20:28"
+}
+                    </TextBox>
+                    <TextBox x:Name="XReportResult" Grid.Row="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="POST Авансовый чек">
+                <Grid Background="#FFE5E5E5" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="AdvanceSlipButton" Content="Выполнить запрос к API" Grid.Row="0" Click="AdvanceSlipButton_Click"/>
+                    <TextBox x:Name="AdvanceSlipInfo" Grid.Row="1">
+                        <TextBox.Text>
+                            {
+    "module_operation_type": "8",
+    "receipt_cashier_name": "Иван Иванов",
+    "receipt_gnk_time": "2022-03-09 09:13:28",
+    "receipt_sum": 3000000,
+    "receipt_gnk_receivedcash": 3000000,
+    "receipt_gnk_receivedcard": 0,
+    "module_gnk_terminalid": "VG300750000046",
+    "items": [
+        {
+            "CommissionInfo":{
+                "PINFL":"32209450757649",
+                "TIN":"252585185"
+            },
+            "classifier_class_code": "0012",
+            "product_mark": false,
+            "product_name": "Dinay 1000ml",
+            "product_label": "4780019900572",
+            "product_barcode": "4780019900572",
+            "product_price": 10000,
+            "total_product_price": 20000,
+            "product_without_vat": false,
+            "product_discount": 0,
+            "count": 2,
+            "product_vat_percent": 15,
+            "other": 0
+        },
+        {
+            "classifier_class_code": "4780019900572",
+            "product_mark": false,
+            "product_name": "Cola",
+            "product_label": "4780019900572",
+            "product_barcode": "4780019900572",
+            "product_price": 10000,
+            "total_product_price": 10000,
+            "product_without_vat": false,
+            "product_discount": 0,
+            "count": 1,
+            "product_vat_percent": 15,
+            "other": 0
+        }
+    ],
+    "location": {
+        "latitude": 41.29671408606234,
+        "longitude": 69.21787478269367
+    }
+}</TextBox.Text>
+                    </TextBox>
+                    <TextBox x:Name="AdvanceSlipResult" Grid.Row="3"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </xctk:BusyIndicator>
+</Window>
