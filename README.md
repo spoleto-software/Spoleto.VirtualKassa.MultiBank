@@ -19,7 +19,7 @@ services.AddHttpClient();
 services.AddSingleton<IMultiBankProvider, MultiBankProvider>();
 
 // Build the service provider
-_serviceProvider = services.BuildServiceProvider();
+var serviceProvider = services.BuildServiceProvider();
 ```
 
 
@@ -28,18 +28,21 @@ _serviceProvider = services.BuildServiceProvider();
 ```csharp
 var settings = new MultiBankOption { ServiceUrl = "http://localhost:8080/" };
 
-var multiBankProvider = _serviceProvider.GetService<IMultiBankProvider>()!;
+var multiBankProvider = serviceProvider.GetService<IMultiBankProvider>()!;
 var saleSlip = new SaleSlip
 {
-    Items = new List<SlipItem>{
-        new SlipItem{
+    Items = new List<SlipItem>
+    {
+        new SlipItem
+        {
             ProductName="Свитер" ,
             ProductLabel="4780019900571",
             ProductBarcode="4780019900571",
             Count = 1,
             ProductPrice=1000,
             TotalProductPrice=1000,
-            ClassifierClassCode="01902001009030001" }
+            ClassifierClassCode="01902001009030001"
+        }
     },
     ReceiptCashierName = "Иванов Иван",
     ReceiptGnkReceivedCash = 1000,
