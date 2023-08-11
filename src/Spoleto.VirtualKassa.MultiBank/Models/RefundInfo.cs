@@ -6,7 +6,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
     /// <summary>
     /// Содержит информацию об отозванном чеке
     /// </summary>
-    public class ReturnSlipInfo
+    public class RefundInfo
     {
         /// <summary>
         /// Номер ФМ

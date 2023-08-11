@@ -17,8 +17,8 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         /// </summary>
         [Required]
         [JsonPropertyName("RefundInfo")]
-        public ReturnSlipInfo ReturnSlipInfo { get; set; }
+        public RefundInfo RefundInfo { get; set; }
 
-        public override string ToString() => $"{nameof(ReturnSlipInfo)} = {ReturnSlipInfo}, {base.ToString()}";
+        public override string ToString() => $"{nameof(RefundInfo)} = {RefundInfo}, {base.ToString()}";
     }
 }

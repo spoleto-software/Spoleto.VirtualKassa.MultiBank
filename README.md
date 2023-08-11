@@ -50,7 +50,6 @@ var settings = new MultiBankOption { ServiceUrl = "http://localhost:8080/" };
 var closeShiftInfo = new CloseShiftRequest(DateTime.UtcNow);
 
 await multiBankProvider.CloseShiftAsync(settings, closeShiftInfo);
-);
 ```
 
 #### Продажа
@@ -106,7 +105,7 @@ var returnSlip = new ReturnSlip
     ReceiptGnkReceivedCash = 1000,
     ReceiptSum=1000,
     ReceiptGnkTime = DateTime.UtcNow,
-    ReturnSlipInfo = new()
+    RefundInfo = new()
     { 
         TerminalID = "UZ191211502326",
         ReceiptSeq = "1013",
