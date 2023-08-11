@@ -12,6 +12,9 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         [JsonPropertyName("module_operation_type")]
         public override string ModuleOperationType => "4";
 
+        /// <summary>
+        /// Информация об отозванном чеке
+        /// </summary>
         [Required]
         [JsonPropertyName("RefundInfo")]
         public ReturnSlipInfo ReturnSlipInfo { get; set; }
