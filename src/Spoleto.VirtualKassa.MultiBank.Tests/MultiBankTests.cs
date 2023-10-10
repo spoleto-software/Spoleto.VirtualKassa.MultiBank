@@ -22,6 +22,12 @@ namespace Spoleto.VirtualKassa.MultiBank.Tests
             _settings = ConfigurationHelper.GetMultiBankSettings();
         }
 
+        [OneTimeTearDown]
+        public void CleanUp()
+        {
+            _serviceProvider.Dispose();
+        }
+
         [Test]
         public async Task GetDriverConfigurationTest()
         {
