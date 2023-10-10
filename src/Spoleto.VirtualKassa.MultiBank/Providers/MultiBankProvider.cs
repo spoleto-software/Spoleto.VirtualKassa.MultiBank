@@ -85,25 +85,25 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
             return result;
         }
 
-        public async Task<SellInfo> SellAsync(MultiBankOption settings, SaleSlip saleSlip)
+        public async Task<SellResultInfo> SellAsync(MultiBankOption settings, SaleSlip saleSlip)
         {
             var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
 
             var jsonModel = JsonHelper.ToJson(saleSlip);
 
-            var result = await InvokeAsync<SellInfo>(uri, HttpMethod.Post, jsonModel).ConfigureAwait(false);
+            var result = await InvokeAsync<SellResultInfo>(uri, HttpMethod.Post, jsonModel).ConfigureAwait(false);
 
             return result;
         }
 
-        public async Task<ReturnInfo> ReturnAsync(MultiBankOption settings, ReturnSlip returnSlip)
+        public async Task<ReturnResultInfo> ReturnAsync(MultiBankOption settings, ReturnSlip returnSlip)
         {
             var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
 
             var jsonModel = JsonHelper.ToJson(returnSlip);
 
             //todo: проверять что возвращается в роли результата операции
-            var result = await InvokeAsync<ReturnInfo>(uri, HttpMethod.Post, jsonModel).ConfigureAwait(false);
+            var result = await InvokeAsync<ReturnResultInfo>(uri, HttpMethod.Post, jsonModel).ConfigureAwait(false);
 
             return result;
         }

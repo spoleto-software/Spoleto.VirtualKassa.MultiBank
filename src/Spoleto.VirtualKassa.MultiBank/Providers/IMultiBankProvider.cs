@@ -93,24 +93,24 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
         /// <summary>
         /// Method to perform a sale transaction
         /// </summary>
-        SellInfo Sell(MultiBankOption settings, SaleSlip saleSlip)
+        SellResultInfo Sell(MultiBankOption settings, SaleSlip saleSlip)
             => SellAsync(settings, saleSlip).GetAwaiter().GetResult();
 
         /// <summary>
         /// Async method to perform a sale transaction
         /// </summary>
-        Task<SellInfo> SellAsync(MultiBankOption settings, SaleSlip saleSlip);
+        Task<SellResultInfo> SellAsync(MultiBankOption settings, SaleSlip saleSlip);
 
         /// <summary>
         /// Method to perform a refund transaction
         /// </summary>
-        ReturnInfo Return(MultiBankOption settings, ReturnSlip returnSlip)
+        ReturnResultInfo Return(MultiBankOption settings, ReturnSlip returnSlip)
             => ReturnAsync(settings, returnSlip).GetAwaiter().GetResult();
 
         /// <summary>
         /// Async method to perform a refund transaction
         /// </summary>
-        Task<ReturnInfo> ReturnAsync(MultiBankOption settings, ReturnSlip returnSlip);
+        Task<ReturnResultInfo> ReturnAsync(MultiBankOption settings, ReturnSlip returnSlip);
 
         /// <summary>
         /// Method to get the list of profiles for authorization

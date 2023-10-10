@@ -2,7 +2,7 @@
 
 namespace Spoleto.VirtualKassa.MultiBank.Models
 {
-    public class SellInfo : IMultiBankResponse
+    public class SlipBaseResultInfo<T> : IMultiBankResponse where T: class
     {
         [JsonPropertyName("success")]
         public bool Success { get; set; }
@@ -14,7 +14,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         public string Message { get; set; }
 
         [JsonPropertyName("data")]
-        public SellInfoData Data { get; set; }
+        public T Data { get; set; }
 
         public override string ToString() => $"{nameof(Success)} = {Success}, {nameof(Data)} = {Data}";
     }

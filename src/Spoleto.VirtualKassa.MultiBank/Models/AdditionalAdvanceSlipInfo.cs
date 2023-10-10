@@ -2,7 +2,7 @@
 
 namespace Spoleto.VirtualKassa.MultiBank.Models
 {
-    public class AdditionalAdvanceSlipInfo : SellInfo
+    public class AdditionalAdvanceSlipInfo : SellResultInfo
     {
         //todo: ???
     }
