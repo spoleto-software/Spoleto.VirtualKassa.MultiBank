@@ -302,7 +302,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
         public async Task<SlipsInfo> GetSlipListAsync(MultiBankOption settings, SlipCriteria slipCriteria)
         {
             var queryString = HttpHelper.ToQueryString(slipCriteria);
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products/receipts?{queryString}");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}receipts?{queryString}");
 
             var result = await InvokeAsync<SlipsInfo>(uri, HttpMethod.Get).ConfigureAwait(false);
 
