@@ -12,13 +12,16 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         public string ReceiptCashierName { get; set; }
 
         [JsonPropertyName("receipt_sum")]
-        public int ReceiptSum { get; set; }
+        [JsonConverter(typeof(MultiplyDivide100Converter))]
+        public decimal ReceiptSum { get; set; }
 
         [JsonPropertyName("receipt_gnk_receivedcash")]
-        public int ReceiptGnkReceivedCash { get; set; }
+        [JsonConverter(typeof(MultiplyDivide100Converter))]
+        public decimal ReceiptGnkReceivedCash { get; set; }
 
         [JsonPropertyName("receipt_gnk_receivedcard")]
-        public int ReceiptGnkReceivedCard { get; set; }
+        [JsonConverter(typeof(MultiplyDivide100Converter))]
+        public decimal ReceiptGnkReceivedCard { get; set; }
 
         [JsonPropertyName("receipt_gnk_time")]
         [JsonConverter(typeof(DateTimeConverter))]

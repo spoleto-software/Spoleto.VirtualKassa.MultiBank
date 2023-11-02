@@ -25,6 +25,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         /// </summary>
         [Required]
         [JsonPropertyName("receipt_sum")]
+        [JsonConverter(typeof(MultiplyDivide100Converter))]
         public decimal ReceiptSum { get; set; }
 
         /// <summary>
@@ -32,6 +33,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         /// </summary>
         [Required]
         [JsonPropertyName("receipt_gnk_receivedcash")]
+        [JsonConverter(typeof(MultiplyDivide100Converter))]
         public decimal ReceiptGnkReceivedCash { get; set; }
 
         /// <summary>
@@ -39,6 +41,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         /// </summary>
         [Required]
         [JsonPropertyName("receipt_gnk_receivedcard")]
+        [JsonConverter(typeof(MultiplyDivide100Converter))]
         public decimal ReceiptGnkReceivedCard { get; set; }
 
         /// <summary>
