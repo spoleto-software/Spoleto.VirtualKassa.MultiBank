@@ -43,6 +43,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         public bool UseWarehouse { get; set; }
 
         [JsonPropertyName("receipt_gnk_receiptseq")]
+        [JsonConverter(typeof(IntAsStringConverter))]
         public int ReceiptGnkReceiptSeq { get; set; }
 
         [JsonPropertyName("module_terminalid")]

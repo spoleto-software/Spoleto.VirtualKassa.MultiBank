@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Spoleto.VirtualKassa.MultiBank.Converters;
 
 namespace Spoleto.VirtualKassa.MultiBank.Models
 {
@@ -32,6 +33,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         public string Offline { get; set; }
 
         [JsonPropertyName("receipt_gnk_receiptseq")]
+        [JsonConverter(typeof(IntAsStringConverter))]
         public int ReceiptGnkReceiptseq { get; set; }
 
         [JsonPropertyName("module_operation_sum_cash")]
