@@ -24,7 +24,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         /// Время продажи
         /// </summary>
         [JsonPropertyName("DateTime")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverter2))]
         public DateTime DateTime { get; set; }
 
         /// <summary>
