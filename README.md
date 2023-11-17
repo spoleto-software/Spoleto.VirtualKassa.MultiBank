@@ -1,5 +1,9 @@
 # Spoleto.VirtualKassa.MultiBank
 
+[![](https://img.shields.io/github/license/spoleto-software/Spoleto.VirtualKassa.MultiBank)](https://github.com/spoleto-software/Spoleto.VirtualKassa.MultiBank/blob/main/LICENSE)
+[![](https://img.shields.io/nuget/v/Spoleto.VirtualKassa.MultiBank)](https://www.nuget.org/packages/Spoleto.VirtualKassa.MultiBank/)
+![Build](https://github.com/spoleto-software/Spoleto.VirtualKassa.MultiBank/actions/workflows/publish-to-nuget.yml/badge.svg)
+
 C# SDK для интеграции с хостом Мульти-Банка (Узбекистан) для передачи информации об оплатах покупок.
 
 The project for integration with MultiBank host.
