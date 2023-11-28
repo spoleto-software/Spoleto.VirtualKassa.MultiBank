@@ -15,5 +15,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
 
         [JsonPropertyName("success")]
         public bool Success { get; set; }
+
+        public override string ToString() => $"{nameof(Success)} = {Success}, {nameof(Data)} = {Data}";
     }
 }

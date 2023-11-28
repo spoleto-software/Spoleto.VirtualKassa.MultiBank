@@ -148,22 +148,26 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
             return result;
         }
 
-        public async Task OpenShiftAsync(MultiBankOption settings, OpenShiftRequest openShiftRequest)
+        public async Task<ShiftResponse> OpenShiftAsync(MultiBankOption settings, OpenShiftRequest openShiftRequest)
         {
             var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
 
             var jsonModel = JsonHelper.ToJson(openShiftRequest);
 
-            var result = await InvokeAsync<EmptyResponse>(uri, HttpMethod.Post, jsonModel).ConfigureAwait(false);
+            var result = await InvokeAsync<ShiftResponse>(uri, HttpMethod.Post, jsonModel).ConfigureAwait(false);
+
+            return result;
         }
 
-        public async Task CloseShiftAsync(MultiBankOption settings, CloseShiftRequest closeShiftRequest)
+        public async Task<ShiftResponse> CloseShiftAsync(MultiBankOption settings, CloseShiftRequest closeShiftRequest)
         {
             var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
 
             var jsonModel = JsonHelper.ToJson(closeShiftRequest);
 
-            var result = await InvokeAsync<EmptyResponse>(uri, HttpMethod.Post, jsonModel).ConfigureAwait(false);
+            var result = await InvokeAsync<ShiftResponse>(uri, HttpMethod.Post, jsonModel).ConfigureAwait(false);
+
+            return result;
         }
 
         public async Task<XReportInfo> XReportAsync(MultiBankOption settings, XReportRequest xReportRequest)

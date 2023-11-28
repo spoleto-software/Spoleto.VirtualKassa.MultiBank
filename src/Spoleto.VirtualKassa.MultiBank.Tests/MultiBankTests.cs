@@ -214,9 +214,10 @@ namespace Spoleto.VirtualKassa.MultiBank.Tests
             var request = ConfigurationHelper.GetOpenShiftRequest();
 
             // Act
-            await multiBankProvider.OpenShiftAsync(_settings, request);
+            var result = await multiBankProvider.OpenShiftAsync(_settings, request);
 
             // Assert
+            Assert.That(result, Is.Not.Null);
         }
 
         [Test]
@@ -228,9 +229,10 @@ namespace Spoleto.VirtualKassa.MultiBank.Tests
 
 
             // Act
-            await multiBankProvider.CloseShiftAsync(_settings, request);
+            var result = await multiBankProvider.CloseShiftAsync(_settings, request);
 
             // Assert
+            Assert.That(result, Is.Not.Null);
         }
 
         [Test]

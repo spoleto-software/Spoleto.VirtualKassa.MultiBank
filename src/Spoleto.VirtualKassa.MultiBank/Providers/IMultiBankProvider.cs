@@ -161,22 +161,22 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
         /// <summary>
         /// Method to open a shift
         /// </summary>
-        void OpenShift(MultiBankOption settings, OpenShiftRequest openShiftRequest) => OpenShiftAsync(settings, openShiftRequest).GetAwaiter().GetResult();
+        ShiftResponse OpenShift(MultiBankOption settings, OpenShiftRequest openShiftRequest) => OpenShiftAsync(settings, openShiftRequest).GetAwaiter().GetResult();
 
         /// <summary>
         /// Async method to open a shift
         /// </summary>
-        Task OpenShiftAsync(MultiBankOption settings, OpenShiftRequest openShiftRequest);
+        Task<ShiftResponse> OpenShiftAsync(MultiBankOption settings, OpenShiftRequest openShiftRequest);
 
         /// <summary>
         /// Async method to close the shift
         /// </summary>
-        void CloseShift(MultiBankOption settings, CloseShiftRequest closeShiftRequest) => CloseShiftAsync(settings, closeShiftRequest).GetAwaiter().GetResult();
+        ShiftResponse CloseShift(MultiBankOption settings, CloseShiftRequest closeShiftRequest) => CloseShiftAsync(settings, closeShiftRequest).GetAwaiter().GetResult();
 
         /// <summary>
         /// Async method to close the shift
         /// </summary>
-        Task CloseShiftAsync(MultiBankOption settings, CloseShiftRequest closeShiftRequest);
+        Task<ShiftResponse> CloseShiftAsync(MultiBankOption settings, CloseShiftRequest closeShiftRequest);
 
         /// <summary>
         /// Async method to get X report
