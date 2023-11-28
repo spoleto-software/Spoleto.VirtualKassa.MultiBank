@@ -18,6 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spoleto.VirtualKassa.MultiB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkFlow", "WorkFlow", "{48E65D95-265B-44DB-A560-CCE813F25732}"
 	ProjectSection(SolutionItems) = preProject
+		publish-assets-to-github.sh = publish-assets-to-github.sh
 		.github\workflows\publish-to-nuget.yml = .github\workflows\publish-to-nuget.yml
 	EndProjectSection
 EndProject
