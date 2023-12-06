@@ -51,7 +51,7 @@ await multiBankProvider.OpenShiftAsync(settings, openShiftInfo);
 #### Закрытие смены
 ```csharp
 var settings = new MultiBankOption { ServiceUrl = "http://localhost:8080/" };
-var closeShiftInfo = new CloseShiftRequest(DateTime.UtcNow);
+var closeShiftInfo = new CloseShiftRequest(DateTime.UtcNow, "Иванов Иван");
 
 await multiBankProvider.CloseShiftAsync(settings, closeShiftInfo);
 ```
