@@ -5,9 +5,10 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
 {
     public class CloseShiftRequest
     {
-        public CloseShiftRequest(DateTime receiptGnkTime)
+        public CloseShiftRequest(DateTime receiptGnkTime, string receiptCashierName)
         {
             ReceiptGnkTime = receiptGnkTime;
+            ReceiptCashierName = receiptCashierName;
         }
 
         /// <summary>
