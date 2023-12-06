@@ -22,5 +22,11 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         [JsonPropertyName("receipt_gnk_time")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime ReceiptGnkTime { get; set; }
+
+        /// <summary>
+        /// ФИО Кассира
+        /// </summary>
+        [JsonPropertyName("receipt_cashier_name")]
+        public string ReceiptCashierName { get; set; }
     }
 }
