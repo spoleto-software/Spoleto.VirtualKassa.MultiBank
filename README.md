@@ -46,7 +46,7 @@ using Spoleto.VirtualKassa.MultiBank.Models;
 // Set up the dependency injection container
 var services = new ServiceCollection();        
 
-// Register your dependencies here.
+// Register your dependencies here
 services.AddMultiBank();
 
 // Build the service provider
@@ -70,15 +70,14 @@ public class YourMultiBankClass
         _multiBankProvider = multiBankProvider;
     }
 
-    public async Task Sell(SaleSlip slip)
+    public async Task Sell(MultiBankOption settings, SaleSlip slip)
     {
-        var result = await _multiBankProvider.SellAsync(_settings, saleSlip);
+        var result = await _multiBankProvider.SellAsync(settings, saleSlip);
 
         // log the result:
         _logger.LogInformation("Sold {slip} with result: {result}", slip, result);
     }
 }
-```
 ```
 
 ### Примеры вызовов методов API
