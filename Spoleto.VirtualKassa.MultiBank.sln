@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkFlow", "WorkFlow", "{48
 		publish-assets-to-github.sh = publish-assets-to-github.sh
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spoleto.VirtualKassa.MultiBank.Extensions", "src\Spoleto.VirtualKassa.MultiBank.Extensions\Spoleto.VirtualKassa.MultiBank.Extensions.csproj", "{CF851703-0DB0-47D5-A706-A3DF0398FEAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spoleto.VirtualKassa.MultiBank.Extensions", "src\Spoleto.VirtualKassa.MultiBank.Extensions\Spoleto.VirtualKassa.MultiBank.Extensions.csproj", "{DC77A1B8-14E1-4B81-AD45-FEE66C62FA37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,10 +44,10 @@ Global
 		{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF851703-0DB0-47D5-A706-A3DF0398FEAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF851703-0DB0-47D5-A706-A3DF0398FEAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF851703-0DB0-47D5-A706-A3DF0398FEAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF851703-0DB0-47D5-A706-A3DF0398FEAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC77A1B8-14E1-4B81-AD45-FEE66C62FA37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC77A1B8-14E1-4B81-AD45-FEE66C62FA37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC77A1B8-14E1-4B81-AD45-FEE66C62FA37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC77A1B8-14E1-4B81-AD45-FEE66C62FA37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

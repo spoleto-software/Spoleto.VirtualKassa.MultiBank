@@ -27,7 +27,7 @@ jobs:
         run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg --no-build -c Release src/Spoleto.VirtualKassa.MultiBank/Spoleto.VirtualKassa.MultiBank.csproj -o .
 
       - name: Pack Spoleto.VirtualKassa.MultiBank.Extensions
-        run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg --no-build -c Release src/Providers/Spoleto.VirtualKassa.MultiBank.Extensions/Spoleto.VirtualKassa.MultiBank.Extensions.csproj -o .
+        run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg --no-build -c Release src/Spoleto.VirtualKassa.MultiBank.Extensions/Spoleto.VirtualKassa.MultiBank.Extensions.csproj -o .
 
         # Push packages to Nuget
       - name: Push packages
