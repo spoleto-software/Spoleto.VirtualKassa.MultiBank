@@ -3,7 +3,7 @@
     public class MultiBankProviderFactoryTests
     {
         [Test]
-        public async Task CreateMultiBankProvider()
+        public void CreateMultiBankProvider()
         {
             // Arrange
             var factory = new MultiBankProviderFactory();
@@ -16,7 +16,7 @@
         }
 
         [Test]
-        public async Task CreateMultiBankProviderWithHttpClient()
+        public void CreateMultiBankProviderWithHttpClient()
         {
             // Arrange
             var httpClient = new HttpClient();
