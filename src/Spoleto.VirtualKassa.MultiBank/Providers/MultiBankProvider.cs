@@ -1,17 +1,18 @@
 ﻿using Spoleto.Common.Helpers;
-using Spoleto.VirtualKassa.MultiBank.Helpers;
 using Spoleto.VirtualKassa.MultiBank.Models;
 
-namespace Spoleto.VirtualKassa.MultiBank.Providers
+namespace Spoleto.VirtualKassa.MultiBank
 {
     /// <summary>
     /// MultiBank provider.
     /// </summary>
     public partial class MultiBankProvider : IMultiBankProvider
     {
+        private static string GetUrlPrefix(MultiBankOption settings)=>  $"api/{settings.VersionApi}/ ";
+
         public async Task<DriverConfiguration> GetDriverConfigurationAsync(MultiBankOption settings)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}fiscal/set_up_fm");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}fiscal/set_up_fm");
 
             var result = await InvokeAsync<DriverConfiguration>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -20,7 +21,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<FiscalModuleInfo> GetFiscalModuleInfoAsync(MultiBankOption settings)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}info");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}info");
 
             var result = await InvokeAsync<FiscalModuleInfo>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -29,7 +30,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<FiscalModuleStatus> GetFiscalModuleStatusAsync(MultiBankOption settings)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}status");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}status");
 
             var result = await InvokeAsync<FiscalModuleStatus>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -38,7 +39,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<CashRegisterResponse> SetCashRegisterSettingsAsync(MultiBankOption settings, CashRegisterSettings cashRegisterSettings)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}cashbox");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}cashbox");
 
             var jsonModel = JsonHelper.ToJson(cashRegisterSettings);
 
@@ -49,7 +50,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<CashRegisterResponse> GetCashRegisterSettingsAsync(MultiBankOption settings)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}cashbox");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}cashbox");
 
             var result = await InvokeAsync<CashRegisterResponse>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -58,7 +59,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<CompanyInfo> GetCompanyDataAsync(MultiBankOption settings)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}contragents");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}contragents");
 
             var result = await InvokeAsync<CompanyInfo>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -67,7 +68,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<CashiersInfo> GetCashiersAsync(MultiBankOption settings)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}cashiers");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}cashiers");
 
             var result = await InvokeAsync<CashiersInfo>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -76,7 +77,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<CashierLoginResponse> CashierLoginAsync(MultiBankOption settings, CashierLoginInfo loginInfo)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}auth/login");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}auth/login");
 
             var jsonModel = JsonHelper.ToJson(loginInfo);
 
@@ -87,7 +88,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<SellResultInfo> SellAsync(MultiBankOption settings, SaleSlip saleSlip)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}operations");
 
             var jsonModel = JsonHelper.ToJson(saleSlip);
 
@@ -98,7 +99,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<ReturnResultInfo> ReturnAsync(MultiBankOption settings, ReturnSlip returnSlip)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}operations");
 
             var jsonModel = JsonHelper.ToJson(returnSlip);
 
@@ -110,7 +111,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<UseProfileInfo> GetProfilesForAuthorizationAsync(MultiBankOption settings, string bearerToken)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}auth/external/profiles");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}auth/external/profiles");
 
             var result = await InvokeAsync<UseProfileInfo>(uri, HttpMethod.Get, bearerToken: bearerToken).ConfigureAwait(false);
 
@@ -119,7 +120,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<AttachProfileResponse> AttachProfileToTokenAsync(MultiBankOption settings, string bearerToken, ProfileToAttach profileToAttach)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}auth/external/profiles");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}auth/external/profiles");
 
             var jsonModel = JsonHelper.ToJson(profileToAttach);
 
@@ -130,7 +131,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<NomenclaturesInfo> GetNomenclatureListAsync(MultiBankOption settings, bool refresh)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products{(refresh ? "?refresh=1" : String.Empty)}");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}products{(refresh ? "?refresh=1" : String.Empty)}");
 
             var result = await InvokeAsync<NomenclaturesInfo>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -139,7 +140,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<SendMailResponse> SendSaleSlipByEmailAsync(MultiBankOption settings, SendMailRequest sendMailRequest)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}sendMail");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}sendMail");
 
             var jsonModel = JsonHelper.ToJson(sendMailRequest);
 
@@ -150,7 +151,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<ShiftResponse> OpenShiftAsync(MultiBankOption settings, OpenShiftRequest openShiftRequest)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}operations");
 
             var jsonModel = JsonHelper.ToJson(openShiftRequest);
 
@@ -161,7 +162,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<ShiftResponse> CloseShiftAsync(MultiBankOption settings, CloseShiftRequest closeShiftRequest)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}operations");
 
             var jsonModel = JsonHelper.ToJson(closeShiftRequest);
 
@@ -172,7 +173,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<XReportInfo> XReportAsync(MultiBankOption settings, XReportRequest xReportRequest)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}operations");
 
             var jsonModel = JsonHelper.ToJson(xReportRequest);
 
@@ -183,7 +184,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<AdvanceSlipInfo> AdvanceSlipAsync(MultiBankOption settings, AdvanceSlip advanceSlip)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}operations");
 
             var jsonModel = JsonHelper.ToJson(advanceSlip);
 
@@ -195,7 +196,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<AdditionalAdvanceSlipInfo> AdditionalAdvanceSlipAsync(MultiBankOption settings, AdditionalAdvanceSlip additionalAdvanceSlip)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}operations");
 
             var jsonModel = JsonHelper.ToJson(additionalAdvanceSlip);
 
@@ -207,7 +208,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<CreditSlipInfo> CreditSlipAsync(MultiBankOption settings, CreditSlip creditSlip)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}operations");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}operations");
 
             var jsonModel = JsonHelper.ToJson(creditSlip);
 
@@ -219,7 +220,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<IkpusInfo> GetIkpuListAsync(MultiBankOption settings, string parentNode = "root")
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products/ikpu_info?node={parentNode}");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}products/ikpu_info?node={parentNode}");
 
             var result = await InvokeAsync<IkpusInfo>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -228,7 +229,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<MyIkpusInfo> GetMyIkpuListAsync(MultiBankOption settings)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products/myikpu");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}products/myikpu");
 
             var result = await InvokeAsync<MyIkpusInfo>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -237,7 +238,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<AddMyIkpuResponse> AddMyIkpuAsync(MultiBankOption settings, string mxikCode)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products/myikpu");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}products/myikpu");
 
             var jsonModel = JsonHelper.ToJson(new Dictionary<string, string> { { nameof(mxikCode), mxikCode } });
 
@@ -248,7 +249,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task RemoveMyIkpuAsync(MultiBankOption settings, string mxikCode)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products/myikpu");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}products/myikpu");
 
             var jsonModel = JsonHelper.ToJson(new Dictionary<string, string> { { nameof(mxikCode), mxikCode } });
 
@@ -258,7 +259,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
         public async Task<IkpusSearchResult> FindIkpuListAsync(MultiBankOption settings, IkpuTextFilter ikpuTextFilter)
         {
             var queryString = HttpHelper.ToQueryString(ikpuTextFilter);
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products/by_params?{queryString}");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}products/by_params?{queryString}");
 
             var result = await InvokeAsync<IkpusSearchResult>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -268,7 +269,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
         public async Task<IkpusSearchResult> FindIkpuListAsync(MultiBankOption settings, IkpuCodeFilter ikpuCodeFilter)
         {
             var queryString = HttpHelper.ToQueryString(ikpuCodeFilter);
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products/by_params?{queryString}");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}products/by_params?{queryString}");
 
             var result = await InvokeAsync<IkpusSearchResult>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -278,7 +279,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
         public async Task<IkpusSearchResult> FindIkpuListAsync(MultiBankOption settings, IkpuGtinFilter ikpuGtinFilter)
         {
             var queryString = HttpHelper.ToQueryString(ikpuGtinFilter);
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products/by_params?{queryString}");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}products/by_params?{queryString}");
 
             var result = await InvokeAsync<IkpusSearchResult>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -287,7 +288,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<IkpuChangeHistory> GetIkpuChangeHistoryAsync(MultiBankOption settings, string catalogCode)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products/ikpu_history?catalogCode={catalogCode}");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}products/ikpu_history?catalogCode={catalogCode}");
 
             var result = await InvokeAsync<IkpuChangeHistory>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -296,7 +297,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
 
         public async Task<IkpuCheckInfo> CheckIkpuAsync(MultiBankOption settings, string mxikCode)
         {
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}products/check?mxikCode={mxikCode}");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}products/check?mxikCode={mxikCode}");
 
             var result = await InvokeAsync<IkpuCheckInfo>(uri, HttpMethod.Get).ConfigureAwait(false);
 
@@ -306,7 +307,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
         public async Task<SlipsInfo> GetSlipListAsync(MultiBankOption settings, SlipCriteria slipCriteria)
         {
             var queryString = HttpHelper.ToQueryString(slipCriteria);
-            var uri = new Uri(new Uri(settings.ServiceUrl), $"{_urlPrefix}receipts?{queryString}");
+            var uri = new Uri(new Uri(settings.ServiceUrl), $"{GetUrlPrefix(settings)}receipts?{queryString}");
 
             var result = await InvokeAsync<SlipsInfo>(uri, HttpMethod.Get).ConfigureAwait(false);
 

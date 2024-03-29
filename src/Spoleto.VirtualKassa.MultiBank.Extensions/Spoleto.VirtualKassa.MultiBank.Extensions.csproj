@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <!-- Package info -->
+    <PropertyGroup>
+        <Title>Spoleto.VirtualKassa.MultiBank extensions for Microsoft DependencyInjection</Title>
+        <PackageId>Spoleto.VirtualKassa.MultiBank.Extensions</PackageId>
+        <PackageTags>МультиКасса; МультиБанк; ВиртуальнаяКасса; VirtualKassa; MultiBank; Multikassa</PackageTags>
+        <Description>
+            Расширения для работы с Microsoft Dependency injection фреймворком для C# SDK для интеграции с хостом Мульти-Банка (Узбекистан) для передачи информации об оплатах покупок.
+            The extensions for Microsoft Dependency injection framework for the project for integration with MultiBank host.
+        </Description>
+    </PropertyGroup>    
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Spoleto.VirtualKassa.MultiBank\Spoleto.VirtualKassa.MultiBank.csproj" />
+    </ItemGroup>
+
+</Project>

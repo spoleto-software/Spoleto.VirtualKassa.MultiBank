@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5AA9A2B7-BD1B-4484-919E-AC10F1616B0D}"
 	ProjectSection(SolutionItems) = preProject
 		src\.editorconfig = src\.editorconfig
+		src\Directory.Build.props = src\Directory.Build.props
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -18,9 +19,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spoleto.VirtualKassa.MultiB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkFlow", "WorkFlow", "{48E65D95-265B-44DB-A560-CCE813F25732}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\cd.yml = .github\workflows\cd.yml
+		.github\workflows\ci.yml = .github\workflows\ci.yml
 		publish-assets-to-github.sh = publish-assets-to-github.sh
-		.github\workflows\publish-to-nuget.yml = .github\workflows\publish-to-nuget.yml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spoleto.VirtualKassa.MultiBank.Extensions", "src\Spoleto.VirtualKassa.MultiBank.Extensions\Spoleto.VirtualKassa.MultiBank.Extensions.csproj", "{CF851703-0DB0-47D5-A706-A3DF0398FEAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +44,10 @@ Global
 		{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B36D9DEF-7960-42FA-9188-EAFBBEE77C51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF851703-0DB0-47D5-A706-A3DF0398FEAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF851703-0DB0-47D5-A706-A3DF0398FEAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF851703-0DB0-47D5-A706-A3DF0398FEAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF851703-0DB0-47D5-A706-A3DF0398FEAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

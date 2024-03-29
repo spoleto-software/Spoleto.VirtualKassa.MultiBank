@@ -10,6 +10,8 @@
         /// </summary>
         public string ServiceUrl { get; init; }
 
-        public override string ToString() => ServiceUrl;
+        public string VersionApi { get; init; } = "v1";
+
+        public override string ToString() => $"{ServiceUrl} (Version = {VersionApi}).";
     }
 }

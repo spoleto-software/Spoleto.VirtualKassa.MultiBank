@@ -3,8 +3,9 @@ using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Spoleto.Common.Helpers;
 using Spoleto.VirtualKassa.MultiBank.Models;
-using Spoleto.VirtualKassa.MultiBank.Providers;
+using Spoleto.VirtualKassa.MultiBank;
 using Spoleto.VirtualKassa.MultiBank.Tests;
+using Spoleto.VirtualKassa.MultiBank.Extensions;
 
 namespace Spoleto.VirtualKassa.MultiBank.WpfTester
 {
@@ -24,8 +25,7 @@ namespace Spoleto.VirtualKassa.MultiBank.WpfTester
             var services = new ServiceCollection();
 
             // Register your dependencies here.
-            services.AddHttpClient();
-            services.AddSingleton<IMultiBankProvider, MultiBankProvider>();
+            services.AddMultiBank();
 
             // Build the service provider
             _serviceProvider = services.BuildServiceProvider();

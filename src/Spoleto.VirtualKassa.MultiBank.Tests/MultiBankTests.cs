@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Spoleto.Common.Helpers;
+using Spoleto.VirtualKassa.MultiBank.Extensions;
 using Spoleto.VirtualKassa.MultiBank.Models;
-using Spoleto.VirtualKassa.MultiBank.Providers;
 
 namespace Spoleto.VirtualKassa.MultiBank.Tests
 {
@@ -14,8 +13,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Tests
         public void OneTimeSetUp()
         {
             var services = new ServiceCollection();
-            services.AddHttpClient();
-            services.AddSingleton<IMultiBankProvider, MultiBankProvider>();
+            services.AddMultiBank();
 
             _serviceProvider = services.BuildServiceProvider();
 

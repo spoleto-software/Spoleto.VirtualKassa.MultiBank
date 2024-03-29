@@ -3,28 +3,35 @@ using Spoleto.Common.Helpers;
 using Spoleto.VirtualKassa.MultiBank.Extensions;
 using Spoleto.VirtualKassa.MultiBank.Models;
 
-namespace Spoleto.VirtualKassa.MultiBank.Providers
+namespace Spoleto.VirtualKassa.MultiBank
 {
     public partial class MultiBankProvider
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        private readonly string _urlPrefix;
+        private readonly HttpClient _httpClient;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor.
         /// </summary>
-        /// <param name="httpClientFactory"></param>
-        public MultiBankProvider(IHttpClientFactory httpClientFactory)
+        public MultiBankProvider()
+            : this(new HttpClient())
         {
-            _httpClientFactory = httpClientFactory;
-            _urlPrefix = "api/v1/"; //todo: ?
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="MultiBankProvider"/>.
+        /// </summary>
+        /// <param name="httpClient">The <see cref="HttpClient"/> instance.</param>
+        public MultiBankProvider(HttpClient httpClient)
+        {
+            if (httpClient is null)
+                throw new ArgumentNullException(nameof(httpClient));
+
+            _httpClient = httpClient;
+            _httpClient.ConfigureHttpClient();
         }
 
         private async Task<T> InvokeAsync<T>(Uri uri, HttpMethod method, string? requestJsonContent = null, bool throwIfUnsuccess = true, string? bearerToken = null) where T : IMultiBankResponse
         {
-            var client = _httpClientFactory.CreateClient();
-            client.ConfigureHttpClient();
-
             using var requestMessage = new HttpRequestMessage(method, uri);
             InitRequestHeaders(requestMessage);
 
@@ -38,7 +45,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Providers
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
             }
 
-            using var responseMessage = await client.SendAsync(requestMessage).ConfigureAwait(false);
+            using var responseMessage = await _httpClient.SendAsync(requestMessage).ConfigureAwait(false);
 
             if (responseMessage.IsSuccessStatusCode)
             {

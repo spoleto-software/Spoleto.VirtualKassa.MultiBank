@@ -1,6 +1,6 @@
 ﻿using Spoleto.VirtualKassa.MultiBank.Models;
 
-namespace Spoleto.VirtualKassa.MultiBank.Providers
+namespace Spoleto.VirtualKassa.MultiBank
 {
     /// <summary>
     /// MultiBank provider.

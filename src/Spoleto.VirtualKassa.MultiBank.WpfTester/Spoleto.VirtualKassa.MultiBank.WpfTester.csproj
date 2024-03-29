@@ -27,12 +27,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.1" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-        <PackageReference Include="Spoleto.Common" Version="1.6.8.1844" />
+        <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+        <PackageReference Include="Spoleto.Common" Version="2.3.22.1303" />
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Spoleto.VirtualKassa.MultiBank.Extensions\Spoleto.VirtualKassa.MultiBank.Extensions.csproj" />
         <ProjectReference Include="..\Spoleto.VirtualKassa.MultiBank.Tests\Spoleto.VirtualKassa.MultiBank.Tests.csproj" />
         <ProjectReference Include="..\Spoleto.VirtualKassa.MultiBank\Spoleto.VirtualKassa.MultiBank.csproj" />
     </ItemGroup>

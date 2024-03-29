@@ -10,7 +10,7 @@ The project for integration with MultiBank host.
 
 ## Быстрый старт
 
-Клиент написан на C#, .NET 7.0 с использованием Dependency Injection от [Microsoft](https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-usage).
+Клиент написан на C# .NET 7.0, .NET 8.0
 
 ### Установка Nuget пакета:
 Для использования этого SDK необходимо установить Nuget пакет ``Spoleto.VirtualKassa.MultiBank``:
@@ -20,26 +20,68 @@ https://www.nuget.org/packages/Spoleto.VirtualKassa.MultiBank
 Install-Package Spoleto.VirtualKassa.MultiBank -ProjectName StoreApplication
 ```
 
-### Определение зависимостей
+### MultiBankProvider
+Для создания экземпляра ``MultiBankProvider`` рекомендуется использовать ``Spoleto.VirtualKassa.MultiBank.MultiBankProviderFactory``:
+```
+var factory = new MultiBankProviderFactory();
+
+var provider = factory.Build();
+
+// Либо с передачей экземпляра HttpClient:
+var httpClient = new HttpClient();
+var factory = new MultiBankProviderFactory()
+              .WithHttpClient(httpClient);
+
+var provider = factory.Build();
+```
+
+### Dependency Injection
+Чтобы интегрировать ``Spoleto.VirtualKassa.MultiBank`` в Microsoft Dependency injection следует использовать NuGet пакет [**Spoleto.VirtualKassa.MultiBank.Extensions**](https://www.nuget.org/packages/Spoleto.VirtualKassa.MultiBank.Extensions/). Этот пакет предоставляет методы-расширения для интерфейса ``IServiceCollection``, которые регистрируют ``MultiBankProvider`` как transient сервис.
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
+using Spoleto.VirtualKassa.MultiBank.Extensions;
 using Spoleto.VirtualKassa.MultiBank.Models;
-using Spoleto.VirtualKassa.MultiBank.Providers;
 
 // Set up the dependency injection container
-var services = new ServiceCollection();
+var services = new ServiceCollection();        
 
 // Register your dependencies here.
-services.AddHttpClient();
-services.AddSingleton<IMultiBankProvider, MultiBankProvider>();
+services.AddMultiBank();
 
 // Build the service provider
 var serviceProvider = services.BuildServiceProvider();
 ```
 
+### Внедрение службы MultiBankProvider в ваши классы
+После регистрации ``Spoleto.VirtualKassa.MultiBank`` в вашем фреймворке Dependency Injection вы можете внедрить ``MultiBankProvider`` в любой класс вашего приложения.
 
-### Вызов методов API
+Для этого внедрите интерфейс ``IMultiBankProvider`` в конструкторы классов, в которых вы хотите использовать функциональность ``MultiBankProvider``:
+
+```csharp
+public class YourMultiBankClass
+{
+    private readonly ILogger<YourMultiBankClass> _logger;
+    private readonly IMultiBankProvider _multiBankProvider;
+
+    public YourMultiBankClass(ILogger<YourMultiBankClass> logger, IMultiBankProvider multiBankProvider)
+    {
+        _logger = logger;
+        _multiBankProvider = multiBankProvider;
+    }
+
+    public async Task Sell(SaleSlip slip)
+    {
+        var result = await _multiBankProvider.SellAsync(_settings, saleSlip);
+
+        // log the result:
+        _logger.LogInformation("Sold {slip} with result: {result}", slip, result);
+    }
+}
+```
+```
+
+### Примеры вызовов методов API
 #### Открытие смены
 ```csharp
 var settings = new MultiBankOption { ServiceUrl = "http://localhost:8080/" };
