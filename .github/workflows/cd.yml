@@ -6,7 +6,7 @@ on:
     
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -17,10 +17,14 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: |
+          dotnet restore src/Spoleto.VirtualKassa.MultiBank/Spoleto.VirtualKassa.MultiBank.csproj
+          dotnet restore src/Spoleto.VirtualKassa.MultiBank.Extensions/Spoleto.VirtualKassa.MultiBank.Extensions.csproj
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: |
+          dotnet build src/Spoleto.VirtualKassa.MultiBank/Spoleto.VirtualKassa.MultiBank.csproj --configuration Release --no-restore
+          dotnet build src/Spoleto.VirtualKassa.MultiBank.Extensions/Spoleto.VirtualKassa.MultiBank.Extensions.csproj --configuration Release --no-restore
 
         # Pack packages
       - name: Pack Spoleto.VirtualKassa.MultiBank
