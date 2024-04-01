@@ -8,7 +8,7 @@ namespace Spoleto.VirtualKassa.MultiBank
     /// </summary>
     public partial class MultiBankProvider : IMultiBankProvider
     {
-        private static string GetUrlPrefix(MultiBankOption settings)=>  $"api/{settings.VersionApi}/ ";
+        private static string GetUrlPrefix(MultiBankOption settings)=>  $"api/{settings.VersionApi}/";
 
         public async Task<DriverConfiguration> GetDriverConfigurationAsync(MultiBankOption settings)
         {
