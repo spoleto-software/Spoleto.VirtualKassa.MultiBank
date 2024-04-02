@@ -43,6 +43,28 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         [JsonPropertyName("other")]
         public decimal Other { get; set; }
 
+        /// <summary>
+        /// Код единицы измерения (упаковки).
+        /// </summary>
+        /// <remarks>
+        /// Примеры:<br/>
+        /// "1425694"<br/>
+        /// "1340942"
+        /// </remarks>
+        [JsonPropertyName("product_package")]
+        public string ProductPackage { get; set; }
+
+        /// <summary>
+        /// Наименование единицы измерения (упаковки) латиницей.
+        /// </summary>
+        /// <remarks>
+        /// Примеры:<br/>
+        /// "kilogramm"<br/>
+        /// "dona (banka) 2000 millilitr"
+        /// </remarks>
+        [JsonPropertyName("product_package_name")]
+        public string ProductPackageName { get; set; }
+
         public override string ToString() => $"{nameof(ProductName)} = {ProductName}, {nameof(TotalProductPrice)} = {TotalProductPrice}";
     }
 }
