@@ -20,16 +20,16 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         public string ProductBarcode { get; set; }
 
         [JsonPropertyName("product_price")]
-        public int ProductPrice { get; set; }
+        public decimal ProductPrice { get; set; }
 
         [JsonPropertyName("total_product_price")]
-        public int TotalProductPrice { get; set; }
+        public decimal TotalProductPrice { get; set; }
 
         [JsonPropertyName("product_without_vat")]
         public bool ProductWithoutVat { get; set; }
 
         [JsonPropertyName("product_discount")]
-        public int ProductDiscount { get; set; }
+        public decimal ProductDiscount { get; set; }
 
         [JsonPropertyName("count")]
         public int Count { get; set; }
@@ -41,22 +41,22 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         public int Other { get; set; }
 
         [JsonPropertyName("total_sum")]
-        public int TotalSum { get; set; }
+        public decimal TotalSum { get; set; }
 
         [JsonPropertyName("total_discount")]
-        public int TotalDiscount { get; set; }
+        public decimal TotalDiscount { get; set; }
 
         [JsonPropertyName("total_price")]
-        public int TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
 
         [JsonPropertyName("SPIC")]
         public string SPIC { get; set; }
 
         [JsonPropertyName("Discount")]
-        public int Discount { get; set; }
+        public decimal Discount { get; set; }
 
         [JsonPropertyName("Price")]
-        public int Price { get; set; }
+        public decimal Price { get; set; }
 
         [JsonPropertyName("Barcode")]
         public string Barcode { get; set; }
@@ -74,7 +74,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         public string Label { get; set; }
 
         [JsonPropertyName("VAT")]
-        public int VAT { get; set; }
+        public decimal VAT { get; set; }
 
         [JsonPropertyName("Name")]
         public string Name { get; set; }
@@ -98,22 +98,22 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         public bool ReceiptItemMark { get; set; }
 
         [JsonPropertyName("receipt_item_gnk_discount")]
-        public int ReceiptItemGnkDiscount { get; set; }
+        public decimal ReceiptItemGnkDiscount { get; set; }
 
         [JsonPropertyName("receipt_item_qty")]
         public int ReceiptItemQty { get; set; }
 
         [JsonPropertyName("receipt_item_gnk_price")]
-        public int ReceiptItemGnkPrice { get; set; }
+        public decimal ReceiptItemGnkPrice { get; set; }
 
         [JsonPropertyName("receipt_item_gnk_amount")]
         public int ReceiptItemGnkAmount { get; set; }
 
         [JsonPropertyName("receipt_item_per_vat")]
-        public int ReceiptItemPerVat { get; set; }
+        public decimal ReceiptItemPerVat { get; set; }
 
         [JsonPropertyName("receipt_item_gnk_vat")]
-        public int ReceiptItemGnkVat { get; set; }
+        public decimal ReceiptItemGnkVat { get; set; }
 
         [JsonPropertyName("receipt_item_classifier_class_code")]
         public string ReceiptItemClassifierClassCode { get; set; }
