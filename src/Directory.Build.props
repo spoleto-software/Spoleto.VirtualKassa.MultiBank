@@ -35,9 +35,9 @@
         <PackageTags>МультиКасса; МультиБанк; ВиртуальнаяКасса; VirtualKassa; MultiBank; Multikassa</PackageTags>
         <Copyright>Copyright © $([System.DateTime]::Now.Year.ToString())</Copyright>
         <PackageReleaseNotes></PackageReleaseNotes>
-        <Version>2.0.4</Version>
-        <AssemblyVersion>2.0.4.0</AssemblyVersion>
-        <FileVersion>2.0.4.0</FileVersion>
+        <Version>2.0.5</Version>
+        <AssemblyVersion>2.0.5.0</AssemblyVersion>
+        <FileVersion>2.0.5.0</FileVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
