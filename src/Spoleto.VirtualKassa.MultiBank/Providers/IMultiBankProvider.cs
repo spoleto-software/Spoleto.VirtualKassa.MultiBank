@@ -91,6 +91,17 @@ namespace Spoleto.VirtualKassa.MultiBank
         Task<CashierLoginResponse> CashierLoginAsync(MultiBankOption settings, CashierLoginInfo loginInfo);
 
         /// <summary>
+        /// Method for cashier login (authentication) only by username and password (without profile id).
+        /// </summary>
+        CashierExternalLoginResponse CashierExternalLogin(MultiBankOption settings, CashierExternalLoginInfo loginInfo)
+            => CashierExternalLoginAsync(settings, loginInfo).GetAwaiter().GetResult();
+
+        /// <summary>
+        /// Async method for cashier login (authentication)
+        /// </summary>
+        Task<CashierExternalLoginResponse> CashierExternalLoginAsync(MultiBankOption settings, CashierExternalLoginInfo loginInfo);
+
+        /// <summary>
         /// Method to perform a sale transaction
         /// </summary>
         SellResultInfo Sell(MultiBankOption settings, SaleSlip saleSlip)
@@ -115,22 +126,22 @@ namespace Spoleto.VirtualKassa.MultiBank
         /// <summary>
         /// Method to get the list of profiles for authorization
         /// </summary>
-        UseProfileInfo GetProfilesForAuthorization(MultiBankOption settings, string bearerToken) => GetProfilesForAuthorizationAsync(settings, bearerToken).GetAwaiter().GetResult();
+        UseProfileInfo GetProfilesForAuthorization(MultiBankOption settings) => GetProfilesForAuthorizationAsync(settings).GetAwaiter().GetResult();
 
         /// <summary>
         /// Async method to get the list of profiles for authorization
         /// </summary>
-        Task<UseProfileInfo> GetProfilesForAuthorizationAsync(MultiBankOption settings, string bearerToken);
+        Task<UseProfileInfo> GetProfilesForAuthorizationAsync(MultiBankOption settings);
 
         /// <summary>
         /// Method to attach a profile to the token
         /// </summary>
-        AttachProfileResponse AttachProfileToToken(MultiBankOption settings, string bearerToken, ProfileToAttach profileToAttach) => AttachProfileToTokenAsync(settings, bearerToken, profileToAttach).GetAwaiter().GetResult();
+        AttachProfileResponse AttachProfileToToken(MultiBankOption settings, ProfileToAttach profileToAttach) => AttachProfileToTokenAsync(settings, profileToAttach).GetAwaiter().GetResult();
 
         /// <summary>
         /// Async method to attach a profile to the token
         /// </summary>
-        Task<AttachProfileResponse> AttachProfileToTokenAsync(MultiBankOption settings, string bearerToken, ProfileToAttach profileToAttach);
+        Task<AttachProfileResponse> AttachProfileToTokenAsync(MultiBankOption settings, ProfileToAttach profileToAttach);
 
         /// <summary>
         /// Method to get the list of nomenclatures.

@@ -2,7 +2,7 @@
 
 namespace Spoleto.VirtualKassa.MultiBank.Models
 {
-    public class UseProfile
+    public class CashierExternalLoginResponse : IMultiBankResponse
     {
         [JsonPropertyName("message")]
         public string Message { get; set; }
@@ -17,8 +17,8 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         public DateTime Timestamp { get; set; }
 
         [JsonPropertyName("data")]
-        public UseProfileData Data { get; set; }
+        public ExternalTokenInfo Data { get; set; }
 
-        public override string ToString() => $"{nameof(Data)} = {Data}";
+        public override string ToString() => $"{nameof(Success)} = {Success}, {nameof(Data)} = {Data}";
     }
 }

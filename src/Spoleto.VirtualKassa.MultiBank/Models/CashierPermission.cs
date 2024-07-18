@@ -1,9 +1,8 @@
-﻿using System.Data;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Spoleto.VirtualKassa.MultiBank.Models
 {
-    public class CashierRole
+    public class CashierPermission
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -23,18 +22,21 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         [JsonPropertyName("admin")]
         public bool Admin { get; set; }
 
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
         [JsonPropertyName("sort")]
         public int Sort { get; set; }
 
-        [JsonPropertyName("module_name")]
-        public string ModuleName { get; set; }
+        [JsonPropertyName("group_name")]
+        public string GroupName { get; set; }
 
         [JsonPropertyName("deleted_at")]
         public object DeletedAt { get; set; }
 
-        [JsonPropertyName("permissions")]
-        public List<CashierPermission> Permissions { get; set; }
-
-        public override string ToString() => $"{nameof(Name)} = {Name}, {nameof(Permissions)}: {String.Join(Environment.NewLine, Permissions.Select(x => x.ToString()))}";
+        [JsonPropertyName("pivot")]
+        public CashierPermissionPivot Pivot { get; set; }
+        
+        public override string ToString() => $"{Name}";
     }
 }

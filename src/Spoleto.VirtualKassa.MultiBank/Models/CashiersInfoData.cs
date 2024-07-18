@@ -8,11 +8,14 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         [JsonPropertyName("profile_id")]
         public string ProfileId { get; set; }
 
-        [JsonPropertyName("contragent_id")]
-        public string ContragentId { get; set; }
+        [JsonPropertyName("profile_of_user_uuid")]
+        public string ProfileOfUserUuid { get; set; }
+
+        [JsonPropertyName("profile_uuid")]
+        public string ProfileUuid { get; set; }
 
         [JsonPropertyName("person_id")]
-        public object PersonId { get; set; }
+        public string PersonId { get; set; }
 
         [JsonPropertyName("user_id")]
         public string UserId { get; set; }
@@ -32,6 +35,9 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         [JsonPropertyName("roles")]
         public List<CashierRole> Roles { get; set; }
 
+        [JsonPropertyName("modules")]
+        public List<CashierModule> Modules { get; set; }
+       
         public override string ToString() => $"{nameof(Login)} = {Login}, {nameof(Roles)}: {String.Join(Environment.NewLine, Roles.Select(x => x.ToString()))}";
     }
 }

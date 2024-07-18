@@ -212,7 +212,7 @@ namespace Spoleto.VirtualKassa.MultiBank.WpfTester
 
             try
             {
-                var result = await multiBankProvider.GetProfilesForAuthorizationAsync(_settings, GetProfilesForAuthorizationInfo.Text);
+                var result = await multiBankProvider.GetProfilesForAuthorizationAsync(_settings);
 
                 GetProfilesForAuthorizationResult.Text = result.ToString();
             }

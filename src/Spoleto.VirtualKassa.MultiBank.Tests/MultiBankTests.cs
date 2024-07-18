@@ -60,7 +60,6 @@ namespace Spoleto.VirtualKassa.MultiBank.Tests
             // Arrange
             var multiBankProvider = _serviceProvider.GetService<IMultiBankProvider>()!;
 
-
             // Act
             var result = await multiBankProvider.GetCompanyDataAsync(_settings);
 
@@ -145,7 +144,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Tests
             var token = ConfigurationHelper.GetBearerToken();
 
             // Act
-            var result = await multiBankProvider.GetProfilesForAuthorizationAsync(_settings, token);
+            var result = await multiBankProvider.GetProfilesForAuthorizationAsync(_settings);
 
             // Assert
             Assert.That(result, Is.Not.Null);
