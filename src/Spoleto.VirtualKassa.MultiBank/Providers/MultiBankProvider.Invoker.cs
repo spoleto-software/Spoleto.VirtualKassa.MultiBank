@@ -93,30 +93,36 @@ namespace Spoleto.VirtualKassa.MultiBank
 
         protected virtual async Task Authenticate(MultiBankOption settings, string methodName, HttpRequestMessage requestMessage)
         {
-            if (MethodNeedsToLogin(methodName))
+            if (!String.IsNullOrEmpty(settings.UserName)
+                && !String.IsNullOrEmpty(settings.Password)
+                && !String.IsNullOrEmpty(settings.ProfileId)
+                && !String.IsNullOrEmpty(settings.ProfileOfUserId))
             {
-                if (_tokenInfo == null)
+                if (MethodNeedsToLogin(methodName))
                 {
-                    var loginInfo = new CashierLoginInfo
+                    if (_tokenInfo == null)
                     {
-                        Username = settings.UserName,
-                        Password = settings.Password,
-                        ProfileId = settings.ProfileId,
-                        ProfileOfUserId = settings.ProfileOfUserId
-                    };
+                        var loginInfo = new CashierLoginInfo
+                        {
+                            Username = settings.UserName,
+                            Password = settings.Password,
+                            ProfileId = settings.ProfileId,
+                            ProfileOfUserId = settings.ProfileOfUserId
+                        };
 
-                    var result = await CashierLoginAsync(settings, loginInfo).ConfigureAwait(false);
-                    if (result != null
-                        && result.Success
-                        && result.Token?.Data != null)
-                    {
-                        _tokenInfo = new TokenInfo(result.Token.Data.TokenType, result.Token.Data.AccessToken);
+                        var result = await CashierLoginAsync(settings, loginInfo).ConfigureAwait(false);
+                        if (result != null
+                            && result.Success
+                            && result.Token?.Data != null)
+                        {
+                            _tokenInfo = new TokenInfo(result.Token.Data.TokenType, result.Token.Data.AccessToken);
+                        }
                     }
-                }
 
-                if (_tokenInfo != null)
-                {
-                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue(_tokenInfo.TokenType, _tokenInfo.TokenValue);
+                    if (_tokenInfo != null)
+                    {
+                        requestMessage.Headers.Authorization = new AuthenticationHeaderValue(_tokenInfo.TokenType, _tokenInfo.TokenValue);
+                    }
                 }
             }
         }
