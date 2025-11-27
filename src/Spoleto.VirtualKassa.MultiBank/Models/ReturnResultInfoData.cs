@@ -30,6 +30,7 @@ namespace Spoleto.VirtualKassa.MultiBank.Models
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime ReceiptGnkTime { get; set; }
 
+        [JsonConverter(typeof(SlipResultItemInfoConverter))]
         [JsonPropertyName("items")]
         public List<SlipResultItemInfo> Items { get; set; }
 
